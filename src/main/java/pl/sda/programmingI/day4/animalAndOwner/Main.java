@@ -19,13 +19,28 @@ public class Main {
         populatePersonList(10);
 
         List<Animal> list = animalListStream();
+        System.out.println("animal list test");
         for (Animal animal : list) {
             System.out.println(animal.getName());
             for (Food food : animal.getFavFood()) {
                 System.out.println(food.getName());
             }
             System.out.println("koniec zwierza");
+        }
+        System.out.println("\nperson list test");
 
+        List<Person> peopleList = populatePersonListStream(5);
+        for (Person person : peopleList) {
+            System.out.println();
+            System.out.println(person.getName());
+            System.out.println("animals:");
+            for (Animal animal : person.getAnimalList()) {
+                System.out.println(animal.getName());
+            }
+            System.out.println("food:");
+            for (Food food : person.getFoodList()) {
+                System.out.println(food.getName());
+            }
         }
 /*
         for (Person person : personList) {
@@ -115,7 +130,7 @@ public class Main {
 
     private static List<Person> populatePersonListStream(int size) {
         return IntStream.range(0, size)
-                .mapToObj(i -> new Person("name " + i, genericPopulateFood(3), animalListStream()))
+                .mapToObj(i -> new Person("person " + i, genericPopulateFood(3), animalListStream()))
                 .collect(Collectors.toList());
     }
 
