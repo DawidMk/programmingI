@@ -15,8 +15,10 @@ public class Main {
     public static Random random = new Random();
 
     public static void main(String[] args) {
-        populateFoodList(50);
-        populatePersonList(10);
+//        populateFoodList(50);
+        allFoodList = populateFoodListStream(50);
+//        populatePersonList(10);
+        personList = populatePersonListStream(10);
 
         List<Animal> list = animalListStream();
         System.out.println("animal list test");
@@ -27,6 +29,7 @@ public class Main {
             }
             System.out.println("koniec zwierza");
         }
+
         System.out.println("\nperson list test");
 
         List<Person> peopleList = populatePersonListStream(5);
@@ -121,17 +124,24 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
+    //stwórz listę zwierząt
     private static List<Animal> animalListStream() {
         int size = random.nextInt(5);
         return IntStream.range(0, size)
                 .mapToObj(i -> new Animal("anim" + i, genericPopulateFoodStream(8)))
                 .collect(Collectors.toList());
     }
-
+//stwórz listę ludzi
     private static List<Person> populatePersonListStream(int size) {
         return IntStream.range(0, size)
                 .mapToObj(i -> new Person("person " + i, genericPopulateFood(3), animalListStream()))
                 .collect(Collectors.toList());
     }
 
+    //stwórz listę wszystkich rodzajów jedzenia 'allFoodList'
+    private static List<Food> populateFoodListStream(int size) {
+        return IntStream.range(0, size)
+                .mapToObj(i -> new Food("food " + i))
+                .collect(Collectors.toList());
+    }
 }
