@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
 //        populateFoodList(50);
-        allFoodList = populateFoodListStream(50);
+        allFoodList = populateFoodListStream(10);
 //        populatePersonList(10);
         personList = populatePersonListStream(10);
 
@@ -36,10 +36,21 @@ public class Main {
             }
             System.out.println("koniec zwierza");
         }*/
-
-        System.out.println("\nperson list test");
         personListTest = populatePersonList2Stream(5);
-//        List<Person> peopleList = populatePersonList2(5);
+//        testOfPopulatingPeopleList();
+
+        for (Person person : personListTest) {
+            System.out.println(person.getName());
+            for (Animal animal : person.getAnimalList()) {
+                System.out.println(animal.getName());
+                System.out.println(animal.eat(person.getFoodList()));
+            }
+        }
+    }
+
+    private static void testOfPopulatingPeopleList() {
+        System.out.println("\nperson list test");
+
         for (Person person : personListTest) {
             System.out.println();
             System.out.println(person.getName());
@@ -54,13 +65,6 @@ public class Main {
                 System.out.println(food.getName());
             }
         }
-/*
-        for (Person person : personList) {
-            System.out.println(person.getName());
-            System.out.println(person.getAnimalList().toString());
-            System.out.println(person.getFoodList().toString());
-            System.out.println();
-        }*/
     }
 
     // stwórz listę zwierząt
@@ -83,7 +87,8 @@ public class Main {
             personList.add(person);
         }
     }
-//stwórz listę ludzi i ustawiaj ownera dla zwierząt
+
+    //stwórz listę ludzi i ustawiaj ownera dla zwierząt
     private static void populatePersonList2(int size) {
         for (int i = 0; i < size; i++) {
             Person person = new Person("person " + i, populatePersonalFood(), animalList());
@@ -161,15 +166,16 @@ public class Main {
 
     //stwórz listę ludzi i ustawiaj ownera dla zwierząt stream
 
-    private static List<Person> populatePersonList2Stream(int size){
-        return IntStream.range(0,size)
-                .mapToObj(i -> new Person("person "+i,populatePersonalFood(),animalList()))
+    private static List<Person> populatePersonList2Stream(int size) {
+        return IntStream.range(0, size)
+                .mapToObj(i -> new Person("person " + i, populatePersonalFood(), animalList()))
                 .map(person -> {
                     person.getAnimalList()
                             .forEach(
                                     animal -> animal.setOwner(person)
                             );
-                    return person;})
+                    return person;
+                })
                 .collect(Collectors.toList());
     }
 

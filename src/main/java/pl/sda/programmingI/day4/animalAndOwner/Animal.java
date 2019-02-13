@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Animal {
     private String name;
     // opcjonalnie dodać obsługę ownera
-        private Person owner;
+    private Person owner;
     private List<Food> favFood = new ArrayList<>();
 
     public Animal() {
@@ -61,19 +61,24 @@ public class Animal {
     }
 
     //metoda eat
- /*   public String eat(List foodList) {
+    public String eat(List foodList) {
         String hungry = "";
-        for (Object o : foodList) {
-            for (Food food : favFood) {
-                if (o.equals(getFavFood())) {
-                    hungry = "najedzony";
-                } else {
-                    hungry = "dalej głodny";
+        if (foodList == null) {
+            hungry = "głodny, człowiek nie ma jedzenia";
+        } else {
+            for (Object o : foodList) {
+                for (Food food : favFood) {
+                    if (o.equals(food)) {
+                        hungry = "najedzony";
+                        break;
+                    } else {
+                        hungry = "dalej głodny";
+                    }
                 }
             }
         }
         return hungry;
-    }*/
+    }
 
     //metoda still hungry
 //    public String stillHungry()
