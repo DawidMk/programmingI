@@ -1,6 +1,8 @@
 package pl.sda.programmingI.day4.animalAndOwner;
 
 
+import com.sun.deploy.perf.PerfRollup;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,7 +83,7 @@ public class Main {
             personList.add(person);
         }
     }
-
+//stwórz listę ludzi i ustawiaj ownera dla zwierząt
     private static void populatePersonList2(int size) {
         for (int i = 0; i < size; i++) {
             Person person = new Person("person " + i, populatePersonalFood(), animalList());
@@ -92,16 +94,6 @@ public class Main {
         }
     }
 
-    private static List<Person> populatePersonList2Stream(int size){
-        List<Person> list = new ArrayList<>();
-        return IntStream.range(0,size)
-                .mapToObj(i -> new Person("person "+i,populatePersonalFood(),animalList()))
-                .map(person -> person.getAnimalList().stream()
-                        .forEach(animal -> animal.setOwner(person)))
-                .collect(Collectors.toList());
-//       list.stream().map(person -> person.getAnimalList().stream().map(animal -> animal.setOwner(person))).collect(Collectors.toList());
-
-    }
 
     //stwórz listę wszystkich rodzajów jedzenia 'allFoodList'
     private static void populateFoodList(int size) {
@@ -164,6 +156,20 @@ public class Main {
     private static List<Person> populatePersonListStream(int size) {
         return IntStream.range(0, size)
                 .mapToObj(i -> new Person("person " + i, genericPopulateFood(3), animalListStream()))
+                .collect(Collectors.toList());
+    }
+
+    //stwórz listę ludzi i ustawiaj ownera dla zwierząt stream
+
+    private static List<Person> populatePersonList2Stream(int size){
+        return IntStream.range(0,size)
+                .mapToObj(i -> new Person("person "+i,populatePersonalFood(),animalList()))
+                .map(person -> {
+                    person.getAnimalList()
+                            .forEach(
+                                    animal -> animal.setOwner(person)
+                            );
+                    return person;})
                 .collect(Collectors.toList());
     }
 
