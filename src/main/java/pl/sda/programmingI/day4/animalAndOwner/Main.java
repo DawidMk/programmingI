@@ -97,7 +97,7 @@ public class Main {
         return IntStream.range(0,size)
                 .mapToObj(i -> new Person("person "+i,populatePersonalFood(),animalList()))
                 .map(person -> person.getAnimalList().stream()
-                        .map(animal -> animal.setOwner(person)))
+                        .forEach(animal -> animal.setOwner(person)))
                 .collect(Collectors.toList());
 //       list.stream().map(person -> person.getAnimalList().stream().map(animal -> animal.setOwner(person))).collect(Collectors.toList());
 
