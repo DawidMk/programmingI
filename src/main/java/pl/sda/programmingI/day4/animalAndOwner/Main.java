@@ -38,7 +38,7 @@ public class Main {
         }*/
 
         System.out.println("\nperson list test");
-        populatePersonList2(5);
+        personListTest = populatePersonList2Stream(5);
 //        List<Person> peopleList = populatePersonList2(5);
         for (Person person : personListTest) {
             System.out.println();
