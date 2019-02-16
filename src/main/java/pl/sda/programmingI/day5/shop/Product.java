@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class Product {
     private BigDecimal price;
     private String name;
+    private String password;
 
     public BigDecimal getPrice() {
         return price;
@@ -20,5 +21,13 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
