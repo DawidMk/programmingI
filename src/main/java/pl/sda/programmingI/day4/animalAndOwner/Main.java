@@ -39,6 +39,11 @@ public class Main {
         personListTest = populatePersonList2Stream(5);
 //        testOfPopulatingPeopleList();
 
+//        testAnimalsFeed();
+        testAnimalsFeedStream();
+    }
+
+    private static void testAnimalsFeed() {
         for (Person person : personListTest) {
             System.out.println(person.getName());
             for (Animal animal : person.getAnimalList()) {
@@ -47,6 +52,24 @@ public class Main {
             }
         }
     }
+
+    private static void testAnimalsFeedStream() {
+
+        personListTest.forEach(Person::feed);
+        personListTest.stream()
+                .map(Person::hungryAnimals)
+                .flatMap(List::stream)
+                .map(Animal::getName)
+                .forEach(System.out::println);
+
+        /*
+        for (Person person : personListTest) {
+            System.out.println(person.getName());
+            for (Animal animal : person.getAnimalList()) {
+                System.out.println(animal.getName());
+                System.out.println(animal.eat(person.getFoodList()));/*/
+    }
+
 
     private static void testOfPopulatingPeopleList() {
         System.out.println("\nperson list test");
@@ -138,7 +161,7 @@ public class Main {
     }
 
 
-    //=================================================streams====================================================================
+//=================================================streams====================================================================
 
     //ogólna metoda tworząca listę jedzenia
     private static List<Food> genericPopulateFoodStream(int length) {
@@ -164,19 +187,21 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
-    //stwórz listę ludzi i ustawiaj ownera dla zwierząt stream
+//stwórz listę ludzi i ustawiaj ownera dla zwierząt stream
 
     private static List<Person> populatePersonList2Stream(int size) {
+        //                    return person;
         return IntStream.range(0, size)
                 .mapToObj(i -> new Person("person " + i, populatePersonalFood(), animalList()))
-                .map(person -> {
-                    person.getAnimalList()
-                            .forEach(
-                                    animal -> animal.setOwner(person)
-                            );
-                    return person;
-                })
+                .peek(Main::setOwner)
                 .collect(Collectors.toList());
+    }
+
+    private static void setOwner(Person person) {
+        person.getAnimalList()
+                .forEach(
+                        animal -> animal.setOwner(person)
+                );
     }
 
     //stwórz listę wszystkich rodzajów jedzenia 'allFoodList'

@@ -3,6 +3,7 @@ package pl.sda.programmingI.day4.animalAndOwner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Person {
     private String name;
@@ -38,6 +39,22 @@ public class Person {
     public void setAnimalList(List<Animal> animalList) {
         this.animalList = animalList;
     }
+
+    public void feed(){
+        for (Animal animal : animalList){
+            foodList.stream()
+                    .filter(animal::isMyFavFood)
+                    .findAny()
+                    .ifPresent(animal::feedAnimals);
+        }
+    }
+
+    public List<Animal> hungryAnimals(){
+        return animalList.stream()
+                .filter(Animal::isHungry)
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public boolean equals(Object o) {

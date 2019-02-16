@@ -1,9 +1,8 @@
 package pl.sda.programmingI.day3;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Random;
+import pl.sda.programmingI.day1.MyStack;
+
+import java.util.*;
 
 public class OOP {
     public static void main(String[] args) {
@@ -28,7 +27,7 @@ public class OOP {
 //        }
         tab.toStringMine();
         System.out.println();
-        System.out.println("size "+tab.size());*/
+        System.out.println("size "+tab.size());
 
         int[] tab = createTab(10);
         for (int i = 0; i < tab.length; i++) {
@@ -45,8 +44,25 @@ public class OOP {
         System.out.println("test isSorted");
         int[] tab2 = new int[]{1,2,5,3};
 //        int[] tab2 = new int[]{1, 2, 3, 5};
-        System.out.println(isSorted(tab2));
-    }
+        System.out.println(isSorted(tab2));*/
+
+        MeinStack<Integer> sztak = new MeinStack<>();
+        sztak.push(11);
+        sztak.push(12);
+        System.out.println(sztak.peek());
+        sztak.pop();
+        System.out.println(sztak.peek());
+        sztak.pop();
+//        sztak.pop();
+        System.out.println(sztak.peek());
+        System.out.println(sztak.isEmpty());
+
+        }
+
+
+//=======================================================================================================================
+
+
 
     public static int[] createTab(int length) {
         int[] tab = new int[length];

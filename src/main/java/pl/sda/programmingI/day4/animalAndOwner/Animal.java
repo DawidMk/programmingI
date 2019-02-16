@@ -8,6 +8,7 @@ public class Animal {
     private String name;
     // opcjonalnie dodać obsługę ownera
     private Person owner;
+    private Food food;
     private List<Food> favFood = new ArrayList<>();
 
     public Animal() {
@@ -61,6 +62,21 @@ public class Animal {
     }
 
     //metoda eat
+
+    public void feedAnimals(Food food) {
+        this.food = food;
+    }
+
+    public boolean isHungry() {
+        return food == null;
+    }
+
+    public boolean isMyFavFood(Food food){
+        return favFood.contains(food);
+//    return favFood.stream().anyMatch(food::equals);
+    }
+
+
     public String eat(List foodList) {
         String hungry = "";
         if (foodList == null) {

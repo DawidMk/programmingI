@@ -31,9 +31,6 @@ public class SearchingExercises {
 
     private static int[] bubbleSort(int[] inpt) {
         int n = inpt.length;
-        int first;
-        int sec;
-        boolean flag = false;
         int[] tab = inpt;
 
         for (int i = 0; i < n; i++) {
