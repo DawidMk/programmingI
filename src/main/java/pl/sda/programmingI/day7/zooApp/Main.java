@@ -24,11 +24,10 @@ public class Main {
         } else if (choice == 2) {
             populateAnimalList();
             welcomeMenu();
-        }else if(choice == 3){
-
+        } else if (choice == 3) {
+            removeAnimals();
             welcomeMenu();
-        }
-        else {
+        } else {
             System.out.println("wrong choice");
         }
     }
@@ -43,7 +42,7 @@ public class Main {
         }
     }
 
-    public static void populateAnimalList() {
+    private static void populateAnimalList() {
         Animal animal = null;
         System.out.println("which species?\n1. hamster\n2. dog\n3. cat");
         int choice = scanner.nextInt();
@@ -70,21 +69,21 @@ public class Main {
             animal = new Hamster(name, age);
             animalList.add(animal);
 
-        }else if(input == 2){
-            animal = new Dog(name,age);
+        } else if (input == 2) {
+            animal = new Dog(name, age);
             animalList.add(animal);
 
-        }else if(input == 3){
+        } else if (input == 3) {
             animal = new Cat(name, age);
             animalList.add(animal);
-
         }
     }
 
-    private static void removeAnimals(){
+    private static void removeAnimals() {
+        System.out.println("which should be removed?: ");
         String name = scanner.next();
-        for (Animal animal : animalList) {
-            animalList.remove(animal.getName().equals(name));
-        }
+        animalList.removeIf(animal -> animal.getName().equalsIgnoreCase(name));
     }
 }
+
+
