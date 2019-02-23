@@ -1,8 +1,8 @@
 package pl.sda.programmingI.day7.zooApp;
 
 public abstract class Animal implements Introduction {
-    public String name;
-    public Integer age;
+    String name;
+    Integer age;
 
     public Animal(String name, Integer age) {
         this.name = name;

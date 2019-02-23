@@ -16,6 +16,7 @@ public class Main {
         System.out.println("welcome to the jungle! we've got fun and games");
         System.out.println("1. show animals");
         System.out.println("2. add animals");
+        System.out.println("3. remove animal by name");
         int choice = scanner.nextInt();
         if (choice == 1) {
             showAnimals();
@@ -23,7 +24,11 @@ public class Main {
         } else if (choice == 2) {
             populateAnimalList();
             welcomeMenu();
-        } else {
+        }else if(choice == 3){
+
+            welcomeMenu();
+        }
+        else {
             System.out.println("wrong choice");
         }
     }
@@ -73,6 +78,13 @@ public class Main {
             animal = new Cat(name, age);
             animalList.add(animal);
 
+        }
+    }
+
+    private static void removeAnimals(){
+        String name = scanner.next();
+        for (Animal animal : animalList) {
+            animalList.remove(animal.getName().equals(name));
         }
     }
 }
