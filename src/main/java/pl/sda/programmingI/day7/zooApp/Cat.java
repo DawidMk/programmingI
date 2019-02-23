@@ -7,7 +7,7 @@ public class Cat extends Animal {
 
     @Override
     public String introduceYourself() {
-        return "Cat: name: " + name + ", age: " + age;
+        return "Cat: name: " + getName() + ", age: " + getAge();
     }
     }
 

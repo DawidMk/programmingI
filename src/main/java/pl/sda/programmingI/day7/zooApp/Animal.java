@@ -1,13 +1,14 @@
 package pl.sda.programmingI.day7.zooApp;
 
 public abstract class Animal implements Introduction {
-    String name;
-    Integer age;
+    private String name;
+    private Integer age;
 
     public Animal(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
+
 
     @Override
     public String introduceYourself() {

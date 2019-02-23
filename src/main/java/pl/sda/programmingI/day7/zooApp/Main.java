@@ -44,13 +44,15 @@ public class Main {
 
     private static void populateAnimalList() {
         Animal animal = null;
-        System.out.println("which species?\n1. hamster\n2. dog\n3. cat");
+        System.out.println("which species?\n1. hamster\n2. dog\n3. cat\n4. mouse");
         int choice = scanner.nextInt();
         if (choice == 1) {
             createAnimal(choice);
         } else if (choice == 2) {
             createAnimal(choice);
         } else if (choice == 3) {
+            createAnimal(choice);
+        } else if (choice == 4) {
             createAnimal(choice);
         } else {
             System.out.println("wrong choice");
@@ -66,16 +68,15 @@ public class Main {
         System.out.println("give age: ");
         Integer age = scanner.nextInt();
         if (input == 1) {
-            animal = new Hamster(name, age);
-            animalList.add(animal);
+            animalList.add(new Hamster(name, age));
 
         } else if (input == 2) {
-            animal = new Dog(name, age);
-            animalList.add(animal);
+            animalList.add(new Dog(name, age));
 
         } else if (input == 3) {
-            animal = new Cat(name, age);
-            animalList.add(animal);
+            animalList.add(new Cat(name, age));
+        } else if (input == 4) {
+            animalList.add(new Mouse(name, age));
         }
     }
 

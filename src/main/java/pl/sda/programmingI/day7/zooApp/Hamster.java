@@ -6,6 +6,6 @@ public class Hamster extends Animal {
     }
     @Override
     public String introduceYourself() {
-        return "Hamster: name: " + name + ", age: " + age;
+        return "Hamster: name: " + getName() + ", age: " + getAge();
     }
 }

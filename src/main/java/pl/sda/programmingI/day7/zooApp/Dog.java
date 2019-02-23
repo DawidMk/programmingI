@@ -7,6 +7,6 @@ public class Dog extends Animal {
 
     @Override
     public String introduceYourself() {
-        return "Dog: name: " + name + ", age: " + age;
+        return "Dog: name: " + getName() + ", age: " + getAge();
     }
 }
