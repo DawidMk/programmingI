@@ -54,15 +54,19 @@ public class Main {
                 tab[2] == n && tab[4] == n && tab[6] == n
         ) {
             System.out.println("player " + n + " is THE winner!");
-            System.out.println("new game? y/n");
-            String question = scanner.next();
-            if (question.equals("y")) {
-                createNewBoard();
-                game(gameBoard, true);
-            } else {
-                System.out.println("game finished!");
-                System.exit(0);
-            }
+            checkIfNewGame();
+        }
+    }
+
+    private static void checkIfNewGame() {
+        System.out.println("new game? y/n");
+        String question = scanner.next();
+        if (question.equals("y")) {
+            createNewBoard();
+            game(gameBoard, true);
+        } else {
+            System.out.println("game finished!");
+            System.exit(0);
         }
     }
 
@@ -90,9 +94,20 @@ public class Main {
                 .noneMatch(i -> i == 0)
         ) {
             System.out.println("board full! no winner this time!");
-            System.exit(0);
+            checkIfNewGame();
         }
     }
+
+//    private static int chooseField() {
+//        System.out.println("which field? (0-8)");
+//        String field = scanner.next();
+//        boolean b2 = Pattern.compile("[0-8]").matcher(field).matches();
+//        if (!b2 || Integer.valueOf(field) > 8) {
+//            System.out.println("wrong input!");
+//            chooseField();
+//        }
+//        return Integer.valueOf(field);
+//    }
 
     private static int chooseField() {
         System.out.println("which field? (0-8)");
